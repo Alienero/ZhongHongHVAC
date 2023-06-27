@@ -50,9 +50,10 @@ class StatusOperation(enum.Enum):
 
 
 class StatusFanMode(enum.Enum):
-    HIGH = 0x01
-    MID = 0x02
-    LOW = 0x04
+    high = 0x01
+    middle = 0x02
+    low = 0x04
+    auto = 0x00
 
 
 STATUS_PAYLOAD_LEN = 10
@@ -215,7 +216,7 @@ class AcStatus(ZhongHongDataStruct):
 
 
 @attr.s(slots=True)
-class AcData(collections.Iterable):
+class AcData(collections.abc.Iterable):
     header = attr.ib(init=False)  # type: Header
     payload = attr.ib(
         attr.Factory(collections.deque),
